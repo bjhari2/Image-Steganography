@@ -51,19 +51,19 @@ class FC_DenseNet(nn.Module):
         
     def forward(self, x):
         # Initial convolutional layer
-        out = self.conv1(x)
-        out = self.bn_conv1(out)  # Applying BatchNorm after convolution
+        out1 = self.conv1(x)
+        out2 = self.bn_conv1(out1)  # Applying BatchNorm after convolution
         
         # Downsampling block
-        out1 = self.downsample_block(out)
+        out3 = self.downsample_block(out2)
         
         # Transition down
-        out2 = self.transition_down(out1)
+        out4 = self.transition_down(out3)
         
         # Upsampling block
-        out3 = self.upsample_block(out2)
+        out5 = self.upsample_block(out4)
         
         # Final convolutional layer
-        out_final = self.conv_final(out3)
+        out_final = self.conv_final(out5)
         
         return out_final
