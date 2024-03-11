@@ -16,15 +16,15 @@ class FC_DenseNet(nn.Module):
         # Downsampling block
         self.downsample_block = nn.Sequential(
             self.bn_conv1,
-            nn.ReLU(inplace=True),
+            nn.ReLU(),
             nn.Conv2d(50, 150, kernel_size=3, padding=1),
             
             # BatchNorm for the first convolution in the downsampling block
             nn.BatchNorm2d(150),
-            nn.ReLU(inplace=True),
+            nn.ReLU(),
             nn.Conv2d(150, 250, kernel_size=3, padding=1),
             nn.BatchNorm2d(250),
-            nn.ReLU(inplace=True),
+            nn.ReLU(),
             nn.Conv2d(250, 350, kernel_size=3, padding=1)
         )
         
@@ -32,17 +32,17 @@ class FC_DenseNet(nn.Module):
         self.transition_down = nn.Sequential(
             nn.Conv2d(350, 250, kernel_size=1),
             nn.BatchNorm2d(250),
-            nn.ReLU(inplace=True),
+            nn.ReLU(),
             nn.Conv2d(250, 350, kernel_size=3, padding=1)
         )
         
         # Upsampling block
         self.upsample_block = nn.Sequential(
             nn.BatchNorm2d(350),
-            nn.ReLU(inplace=True),
+            nn.ReLU(),
             nn.Conv2d(350, 250, kernel_size=3, padding=1),
             nn.BatchNorm2d(250),
-            nn.ReLU(inplace=True),
+            nn.ReLU(),
             nn.Conv2d(250, 350, kernel_size=3, padding=1)
         )
         
@@ -52,10 +52,10 @@ class FC_DenseNet(nn.Module):
     def forward(self, x):
         # Initial convolutional layer
         out1 = self.conv1(x)
-        out2 = self.bn_conv1(out1)  # Applying BatchNorm after convolution
+        # out2 = self.bn_conv1(out1)  # Applying BatchNorm after convolution
         
         # Downsampling block
-        out3 = self.downsample_block(out2)
+        out3 = self.downsample_block(out1)
         
         # Transition down
         out4 = self.transition_down(out3)

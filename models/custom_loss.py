@@ -12,5 +12,5 @@ class CustomLoss(nn.Module):
         loss_s2 = torch.norm(s2 - s2_prime)
 
         total_loss = loss_c + self.beta * (loss_s1 + loss_s2)
-
+        print(total_loss)
         return total_loss

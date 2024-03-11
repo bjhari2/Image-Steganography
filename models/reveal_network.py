@@ -1,4 +1,3 @@
-import torch
 import torch.nn as nn
 
 class RevealNetwork(nn.Module):
@@ -6,37 +5,37 @@ class RevealNetwork(nn.Module):
         super(RevealNetwork, self).__init__()
         
         self.conv1 = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=3, padding=1),
+            nn.Conv2d(3, 64, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(64),
-            nn.ReLU(inplace=True)
+            nn.ReLU()
         )
         
         self.conv2 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.Conv2d(64, 128, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(128),
-            nn.ReLU(inplace=True)
+            nn.ReLU()
         )
         
         self.conv3 = nn.Sequential(
-            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.Conv2d(128, 256, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(256),
-            nn.ReLU(inplace=True)
+            nn.ReLU()
         )
         
         self.conv4 = nn.Sequential(
-            nn.Conv2d(256, 128, kernel_size=3, padding=1),
+            nn.Conv2d(256, 128, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(128),
-            nn.ReLU(inplace=True)
+            nn.ReLU()
         )
         
         self.conv5 = nn.Sequential(
-            nn.Conv2d(128, 64, kernel_size=3, padding=1),
+            nn.Conv2d(128, 64, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(64),
-            nn.ReLU(inplace=True)
+            nn.ReLU()
         )
         
         self.conv6 = nn.Sequential(
-            nn.Conv2d(64, 3, kernel_size=3, padding=1),
+            nn.Conv2d(64, 3, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(3),
             nn.Sigmoid()
         )
